@@ -1,0 +1,53 @@
+//切图数值转化
+$ppr: 1px/1rem;
+
+*{
+    font-family:Microsoft YaHei
+}
+
+//颜色
+$mask: rgba(0, 0, 0, .6); //蒙层
+$c-theme: #01133b; //头部 主题色
+
+$c-bg: #f5f9ff; //背景色
+$c-help: #63D630; //辅助色
+$c-fbg: #fff; //白底色
+$c-hbg: #f1f1f1; //浅灰底色
+$c-stu-theme: #5dd6ff;
+
+$line: #dcdcdc; //分割线
+$b-line: #000; //弹窗黑边框线
+
+$c-header: #fff; // 顶部导航标题文字
+$c-header-sec: #dde7fd; //导航副标题文字
+
+$c: #323232; //正文标题文字
+$c-light: #aaa; //正文文字
+$c-danger: #FF6507; //正文标注文字
+$c-tag: #5e89ef; //底部标签文字
+$c-gray: #555; //浅色文字
+$c-litgray: #ccc; //浅色文字
+$c-deepgray: #333;
+
+//常用border颜色
+$grayborder: #e1e4ea;
+
+
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+}
+@mixin ellipsis { //单行文本溢出
+  overflow: hidden;
+  text-overflow: ellipsis; //文本溢出显示省略号
+  white-space: nowrap; //文本不会换行（单行文本溢出）
+}
+
+
+

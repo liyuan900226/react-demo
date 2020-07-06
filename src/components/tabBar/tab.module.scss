@@ -1,0 +1,15 @@
+.tab_bar{
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    a{
+        flex: 1;
+        text-decoration: none;
+        text-align: center;
+    }
+    .active{
+        color: #5dd6ff;
+    }
+}
