@@ -7,6 +7,9 @@ import TabBar from '@/components/tabBar'
 // time组件，用来测试组件特性，插槽特性尚未学习
 import Time from '@/components/time'
 
+// 引入无状态组件
+import NoneState from '@//components/noneState'
+
 class Index extends Component {
     constructor(props) {
         super(props)
@@ -39,6 +42,9 @@ class Index extends Component {
                         数量: <input value={this.state.num} onChange={(e) => this.numChange(e)} type="text"/>
                     </p>
                     <p>计算出总价：<input value={this.price} onChange={(e) => this.allPriceChange(e)} type="text"/></p>
+
+                    {/*无状态组件*/}
+                    <NoneState name='11' />
                 </div>
                 <TabBar/>
             </div>
