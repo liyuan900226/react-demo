@@ -8,10 +8,14 @@ import TabBar from '@/components/tabBar'
 import Time from '@/components/time'
 
 class Index extends Component {
-    state = {
-        name: '张三',
-        time: new Date().toISOString().slice(0, 10),
-        age: '14'
+    constructor(props) {
+        super(props)
+        // state 声明在 constructor 方法内和外面并无区别
+        this.state = {
+            name: '张三',
+            time: new Date().toISOString().slice(0, 10),
+            num: 14
+        }
     }
     render() {
         return (
@@ -32,8 +36,9 @@ class Index extends Component {
 
                     {/*表单*/}
                     <p>
-                        年龄: <input value={this.state.age} onChange={(e) => this.inputChange(e)} type="text"/>
+                        数量: <input value={this.state.num} onChange={(e) => this.numChange(e)} type="text"/>
                     </p>
+                    <p>计算出总价：<input value={this.price} onChange={(e) => this.allPriceChange(e)} type="text"/></p>
                 </div>
                 <TabBar/>
             </div>
@@ -53,8 +58,11 @@ class Index extends Component {
     }
 
     goQuery() {
-        // query 传参；接收方式 this.props.location.query
-        // this.props.history.push({pathname: '/homeDetail', query: {name: 'query参数'}})
+        /**
+         * query 传参；接收方式 this.props.location.query
+         * this.props.history.push({pathname: '/homeDetail', query: {name: 'query参数'}})
+         */
+
     }
 
     goParams() {
@@ -63,25 +71,42 @@ class Index extends Component {
     }
 
     // 组件的子传父事件
-    static changeTime(value) {
+    changeTime(value) {
         console.log(value)
     }
 
     changeName() {
-        // setState只会把对应的状态更新，而不会覆盖其他的状态
-        // 这个方法是异步的, setState方法第二个参数是回调，也可以用async await来实现
+        /**
+         * setState只会把对应的状态更新，而不会覆盖其他的状态
+         * 这个方法是异步的, setState方法第二个参数是回调，也可以用async await来实现
+         */
         this.setState({
             name: '李四'
         }, () => console.log(document.getElementById('name').innerHTML))
         console.log(document.getElementById('name').innerHTML)
     }
 
-    inputChange(e) {
+    numChange(e) {
         console.log(e.target.value)
         this.setState({
-            age: e.target.value
+            num: e.target.value
         })
     }
+    allPriceChange(e) {
+        console.log(e.target.value)
+        this.setState({
+            num: e.target.value / 10
+        })
+    }
+
+    /**
+     * 计算属性，通过es6的get、set实现
+     * 在类里面可以去定义一些getter和setter，getter可以得到一些东西的方法，setter可以设置东西
+     */
+    get price() {
+        return this.state.num * 10
+    }
+
 }
 
 export default Index;
