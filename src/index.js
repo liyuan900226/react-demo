@@ -3,7 +3,11 @@ import ReactDOM from 'react-dom';
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import routes from './router'
 // import * as serviceWorker from './serviceWorker';
+
+// 全局样式
 import './assets/scss/base.scss'
+
+// 全局变量及方法
 import './utils/tool'
 
 ReactDOM.render(

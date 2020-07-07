@@ -15,10 +15,16 @@ class Index extends Component {
         super(props)
         // state 声明在 constructor 方法内和外面并无区别
         this.state = {
-            name: '张三',
             time: new Date().toISOString().slice(0, 10),
-            num: 14
+            num: 14,
+            form: {
+                name: '测试',
+                year: '2020'
+            }
         }
+
+        // 通过bind 修改this指向
+        this.handleChange = this.handleChange.bind(this);
     }
     render() {
         return (
@@ -32,10 +38,10 @@ class Index extends Component {
                     </p>
 
                     {/*state  */}
-                    <p id="name">姓名：{ this.state.name } <button onClick={ () => {this.changeName()} }>修改名字</button></p>
+                    <p id="name">姓名：{ this.state.form.name } <button onClick={ () => {this.changeName()} }>修改名字</button></p>
 
                     {/*组件传值*/}
-                    <Time changeTime={this.changeTime} time={ this.state.time } />
+                    <Time changeTime={(value) => this.changeTime(value)} time={ this.state.time } />
 
                     {/*表单*/}
                     <p>
@@ -63,6 +69,10 @@ class Index extends Component {
         // })
     }
 
+    handleChange() {
+
+    }
+
     goQuery() {
         /**
          * query 传参；接收方式 this.props.location.query
@@ -79,15 +89,26 @@ class Index extends Component {
     // 组件的子传父事件
     changeTime(value) {
         console.log(value)
+        this.setState({
+            time: value
+        })
+        console.log('触发了自定义事件')
     }
+
 
     changeName() {
         /**
-         * setState只会把对应的状态更新，而不会覆盖其他的状态
-         * 这个方法是异步的, setState方法第二个参数是回调，也可以用async await来实现
+         * setState 只会把对应的状态更新，而不会覆盖其他的状态
+         * 这个方法是异步的, setState 方法第二个参数是回调，也可以用 async await 来实现
+         * 如果 state 是一个复杂对象，则需要使用三点运算符，三点运算符后面的属性之会覆盖前面的
          */
         this.setState({
-            name: '李四'
+            ...this.state,
+            num: 15,  // 修改 state 的第一层
+            form: {
+                ...this.state.form,
+                name: '李四'  // 修改 state 的第二层
+            }
         }, () => console.log(document.getElementById('name').innerHTML))
         console.log(document.getElementById('name').innerHTML)
     }
