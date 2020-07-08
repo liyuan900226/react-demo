@@ -8,8 +8,12 @@ import TabBar from '@/components/tabBar'
 import Time from '@/components/time'
 
 // 引入无状态组件
-import NoneState from '@//components/noneState'
+import NoneState from '@/components/noneState'
 
+
+import store from '@/redux/store'
+import * as actionTypes from '../../redux/action-types.js'
+console.log(actionTypes)
 class Index extends Component {
     constructor(props) {
         super(props)
@@ -20,11 +24,18 @@ class Index extends Component {
             form: {
                 name: '测试',
                 year: '2020'
-            }
+            },
+            ...store.getState()  // 不需要订阅
         }
 
         // 通过bind 修改this指向
         this.handleChange = this.handleChange.bind(this);
+
+        // 修改状态
+        store.dispatch({
+            type: actionTypes.SET_USER,
+            username: 'zhangsan'
+        })
     }
     render() {
         return (
@@ -51,6 +62,8 @@ class Index extends Component {
 
                     {/*无状态组件*/}
                     <NoneState name='11' />
+
+                    <p>无需订阅的state：{this.state.user.username}</p>
                 </div>
                 <TabBar/>
             </div>
