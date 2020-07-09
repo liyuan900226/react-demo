@@ -15,6 +15,7 @@ axios.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 axios.interceptors.response.use(function (response) {
+    console.log(response)
     // 对响应数据做点什么
     // 处理httpStatus 200 及非 200
     return response;
@@ -25,7 +26,7 @@ axios.interceptors.response.use(function (response) {
 
 
 function request(methods, url, params) {
-    url = 'http://s.hnsuyuan.com' + url
+    url = 'http://127.0.0.1:4523/mock/349129' + url
     if(methods.toLowerCase() === 'get') {
         return axios.get(url, {
             params: params || {}

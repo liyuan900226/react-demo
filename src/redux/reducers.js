@@ -1,5 +1,9 @@
 /**
  *包含n个reducer函数: 根据老的state和指定的action返回一个新的state
+ * reducer必须是一个纯函数，返回结果完全由传入参数决定，例如里面由ajax或者时间就不行！！！！！！！！！
+ *
+ * 因为redux把reducer设计成只负责这个作用，所以reducer的职责不允许有副作用，
+ * 副作用简单来说就是不确定性，如果reducer有副作用，那么返回的state就不确定。
  */
 import {combineReducers} from 'redux'
 

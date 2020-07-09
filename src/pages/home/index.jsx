@@ -11,9 +11,10 @@ import Time from '@/components/time'
 import NoneState from '@/components/noneState'
 
 
-import store from '@/redux/store'
-import * as actionTypes from '../../redux/action-types.js'
-console.log(actionTypes)
+
+
+import { getIndexDetail, add } from '@/api'
+
 class Index extends Component {
     constructor(props) {
         super(props)
@@ -25,17 +26,12 @@ class Index extends Component {
                 name: '测试',
                 year: '2020'
             },
-            ...store.getState()  // 不需要订阅
         }
 
         // 通过bind 修改this指向
         this.handleChange = this.handleChange.bind(this);
 
-        // 修改状态
-        store.dispatch({
-            type: actionTypes.SET_USER,
-            username: 'zhangsan'
-        })
+
     }
     render() {
         return (
@@ -63,7 +59,6 @@ class Index extends Component {
                     {/*无状态组件*/}
                     <NoneState name='11' />
 
-                    <p>无需订阅的state：{this.state.user.username}</p>
                 </div>
                 <TabBar/>
             </div>
@@ -71,15 +66,8 @@ class Index extends Component {
     }
 
     componentDidMount() {
-        // window.utils.$request("post", "/index.php/api/login", {
-        //     username: "0191",
-        //     password: "1",
-        //     remember: "",
-        // },).then(res => {
-        //     console.log(res)
-        // }).catch(e=> {
-        //     console.log(e)
-        // })
+        getIndexDetail({petId: 1})
+        add({name: 'ok', status: '1'})
     }
 
     handleChange() {

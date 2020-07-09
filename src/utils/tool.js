@@ -1,6 +1,5 @@
-import request from './request'
-;(function (window) {
+(function (window) {
     window.utils = {
-        $request: request
+
     }
 })(window)

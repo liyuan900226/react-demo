@@ -1,7 +1,7 @@
 import Index from './index'
 const routes = [
     {
-        path: '/message',
+        path: '/redux',
         components: Index,
         exact: true
     }
