@@ -13,9 +13,7 @@ import './assets/scss/base.scss'
 import './utils/tool'
 
 
-
-
-const App = (
+ReactDOM.render(
     <Provider store={store}>
         <React.StrictMode>
             <HashRouter>
@@ -34,11 +32,7 @@ const App = (
                 </Switch>
             </HashRouter>
         </React.StrictMode>
-    </Provider>
-)
-
-ReactDOM.render(
-    App,
+    </Provider>,
     document.getElementById('root')
 );
 
