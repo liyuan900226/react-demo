@@ -5,7 +5,7 @@
 import request from './request'
 
 // 查询详情
-export const getIndexDetail = ({petId}) => request('get', '/pet/', {petId})
+export const changeUserR = ({petId}) => request('get', '/pet/', {petId})
 // 新增
 export const add = ({name, status}) => request('post','/pet',{name, status})
 

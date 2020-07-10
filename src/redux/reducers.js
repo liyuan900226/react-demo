@@ -1,3 +1,6 @@
+import { SET_USER, CHANGE_USER } from './action-types'
+
+
 /**
  *包含n个reducer函数: 根据老的state和指定的action返回一个新的state
  * reducer必须是一个纯函数，返回结果完全由传入参数决定，例如里面由ajax或者时间就不行！！！！！！！！！
@@ -20,11 +23,13 @@ function user(state=initUser, action) {
      * let newState = JSON.parse(JSON.stringfy(state)) !!!!!!!!!!  (Object.assign() 不是深拷贝，貌似内层的不会深拷贝)
      * 返回一个新的state
      */
+    console.log('action')
+    console.log(action)
     switch (action.type) {
-        case 'set_user': // 设置用户
+        case SET_USER: // 设置用户
             return {...state, username: action.username}
-        case 'delete_user': // 清除用户啊
-            return {...state, msg: action.data}
+        case CHANGE_USER: // 清除用户啊
+            return {...state, username: action.username}
         default:
             return state
     }

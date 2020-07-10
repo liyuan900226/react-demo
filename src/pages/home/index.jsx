@@ -13,7 +13,7 @@ import NoneState from '@/components/noneState'
 
 
 
-import { getIndexDetail, add } from '@/api'
+import { add } from '@/api'
 
 class Index extends Component {
     constructor(props) {
@@ -66,7 +66,6 @@ class Index extends Component {
     }
 
     componentDidMount() {
-        getIndexDetail({petId: 1})
         add({name: 'ok', status: '1'})
     }
 
