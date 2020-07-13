@@ -28,7 +28,7 @@ function user(state=initUser, action) {
     switch (action.type) {
         case SET_USER: // 设置用户
             return {...state, username: action.username}
-        case CHANGE_USER: // 清除用户啊
+        case CHANGE_USER: // 清除用户
             return {...state, username: action.username}
         default:
             return state
