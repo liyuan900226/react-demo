@@ -10,7 +10,7 @@ const change = (username) => ({type: actionTypes.CHANGE_USER, username})
 export const edit = (username) => ({type: actionTypes.SET_USER, username})
 
 
-// 异步action 需要先请求接口，然后在执行
+// 异步action，依赖中间件redux-thunk 需要先请求接口，然后在执行dispatch
 export const changeUser = (params) => {
     return async dispatch => {
         await changeUserR(params)
