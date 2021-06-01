@@ -16,7 +16,7 @@ const initUser = {
     username: '', // 用户名
     msg: '', // 错误提示信息
 }
-// 传入初始化的user数据
+// 传入初始化的user数据，不能直接修改initUser，
 function user(state=initUser, action) {
     /**
      * reducer里面只能接收state，不能改变state，也可以使用深拷贝来进行修改

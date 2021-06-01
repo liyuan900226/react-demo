@@ -7,6 +7,7 @@ import TabBar from '@/components/tabBar'
 import { edit, changeUser } from '../../redux/actions'
 import { connect } from 'react-redux'
 
+
 class Index extends Component {
 
     //如果没有传递该属性时的默认值

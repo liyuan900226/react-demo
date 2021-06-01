@@ -12,6 +12,9 @@ import store from './redux/store'
 import './assets/scss/base.scss'
 import './utils/tool'
 
+// mock
+require('./mock')
+
 
 ReactDOM.render(
     <Provider store={store}>

@@ -81,7 +81,11 @@ class Index extends Component {
 
     }
 
-    goParams() {
+    /**
+     *
+     * @param a
+     */
+    goParams(a) {
         // params 传参
         this.props.history.push('/homeDetail/1/zhangsan')
     }
