@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {Link } from 'react-router-dom'
 
 // tabBar组件
@@ -10,7 +10,8 @@ import Time from '@/components/time'
 // 引入无状态组件
 import NoneState from '@/components/noneState'
 
-
+// 引入带HOOk的组件
+import Hook from '@/components/HookComponent'
 
 
 import { add } from '@/api'
@@ -36,29 +37,44 @@ class Index extends Component {
     render() {
         return (
             <div>
-                首页
                 <div>
-                    <button onClick={() => this.goQuery()}>跳转详情 query传参</button>
-                    <button onClick={() => this.goParams()}>跳转详情 params传参</button>
-                    <p>
-                        <Link to="/homeDetail/1/zhangsan">路由链接 "Link" 跳转</Link>
-                    </p>
-
-                    {/*state  */}
-                    <p id="name">姓名：{ this.state.form.name } <button onClick={ () => {this.changeName()} }>修改名字</button></p>
-
-                    {/*组件传值*/}
-                    <Time changeTime={(value) => this.changeTime(value)} time={ this.state.time } />
-
-                    {/*表单*/}
-                    <p>
-                        数量: <input value={this.state.num} onChange={(e) => this.numChange(e)} type="text"/>
-                    </p>
-                    <p>计算出总价：<input value={this.price} onChange={(e) => this.allPriceChange(e)} type="text"/></p>
-
-                    {/*无状态组件*/}
-                    <NoneState name='11' />
-
+                    <div>
+                        <p>>>>>>>>>>>>>>>>>路由跳转>>>>>>>>>>>>>>>>>></p>
+                        <button onClick={() => this.goQuery()}>跳转详情 query传参</button>
+                        <button onClick={() => this.goParams()}>跳转详情 params传参</button>
+                        <p>
+                            <Link to="/homeDetail/1/zhangsan">路由链接 "Link" 跳转</Link>
+                        </p>
+                        <br/>
+                    </div>
+                    <div>
+                        <p>>>>>>>>>>>>>>>>>state>>>>>>>>>>>>>>>>>></p>
+                        <p id="name">姓名：{ this.state.form.name } <button onClick={ () => {this.changeName()} }>修改名字</button></p>
+                        <br/>
+                    </div>
+                    <div>
+                        <p>>>>>>>>>>>>>>>>>组件传值>>>>>>>>>>>>>>>>>></p>
+                        <Time changeTime={(value) => this.changeTime(value)} time={ this.state.time } />
+                        <br/>
+                    </div>
+                    <div>
+                        <p>>>>>>>>>>>>>>>>>表单>>>>>>>>>>>>>>>>>></p>
+                        <p>
+                            数量: <input value={this.state.num} onChange={(e) => this.numChange(e)} type="text"/>
+                        </p>
+                        <p>计算出总价：<input value={this.price} onChange={(e) => this.allPriceChange(e)} type="text"/></p>
+                        <br/>
+                    </div>
+                    <div>
+                        <p>>>>>>>>>>>>>>>>>无状态组件及HOOK>>>>>>>>>>>>>>>>>></p>
+                        <NoneState name='11' />
+                        <br/>
+                    </div>
+                    <div>
+                        <p>>>>>>>>>>>>>>>>>HOOK>>>>>>>>>>>>>>>>>></p>
+                        <Hook changeName={(e) => alert(JSON.stringify(e))} />
+                        <br/>
+                    </div>
                 </div>
                 <TabBar/>
             </div>

@@ -13,7 +13,7 @@ import './assets/scss/base.scss'
 import './utils/tool'
 
 // mock
-require('./mock')
+// require('./mock')
 
 
 ReactDOM.render(
