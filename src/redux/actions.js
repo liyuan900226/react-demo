@@ -3,6 +3,7 @@ import { changeUserR } from '@/api'
 /**
  * action-creator 方法生成action
  * 包含异步的和同步的
+ * 同步的action对象返回的是个对象
  */
 const change = (username) => ({type: actionTypes.CHANGE_USER, username})
 

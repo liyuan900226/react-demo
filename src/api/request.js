@@ -26,7 +26,6 @@ axios.interceptors.response.use(function (response) {
 
 
 function request(methods, url, params) {
-    url = 'http://127.0.0.1:4523/mock/349129' + url
     if(methods.toLowerCase() === 'get') {
         return axios.get(url, {
             params: params || {}

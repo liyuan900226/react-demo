@@ -6,9 +6,33 @@ import TabBar from '@/components/tabBar'
 // action-creator
 import { edit, changeUser } from '../../redux/actions'
 import { connect } from 'react-redux'
+import store from "../../redux/store";
 
 
 class Index extends Component {
+    /**
+     * redux三大原则
+     * 1、单一数据源
+     * 2、state只读，修改state的唯一方法是触发action
+     * 3、使用reducer（纯函数）来执行修改（为了描述 action 如何改变 state tree ，你需要编写 reducers）
+     *    reducer接收一个state，返回一个新的state，他只负责这个作用，所以不允许出现副作用（不确定性）
+     *
+     */
+
+    /**
+     * action
+     * Action 本质上是 JavaScript 普通对象。我们约定，action 内必须使用一个字符串类型的 type 字段来表示将要执行的动作。多数情况下，type 会被定义成字符串常量。当应用规模越来越大时，建议使用单独的模块或文件来存放 action。
+     * import { ADD_TODO, REMOVE_TODO } from '../actionTypes'
+     *
+     * 虽然 Redux 要求每个 action 对象都有一个 type 的字段，但是你的 reducer 逻辑不必一定要依赖它做处理。也就是说，标准方法肯定是用基于 type 的 switch 语句或者查找表。
+     */
+
+    /**
+     * reducer
+     * 应该有类似 (previousState, action) => newState 特征的函数
+     * redux当中的reducer之所以叫做reducer,是因为它和 Array.prototype.reduce 当中传入的回调函数非常相似。
+     *
+     */
 
     //如果没有传递该属性时的默认值
     // static defaultProps = {
@@ -24,9 +48,9 @@ class Index extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            // ...store.getState()
+            ...store.getState()
         }
-
+        console.log(this.state)
         // 修改状态
         this.props.edit('张三2')
     }
@@ -36,8 +60,8 @@ class Index extends Component {
             <div>
                 redux
                 <p onClick={() => this.props.changeUser({petId: 1}) }>异步action</p>
-                <p>无需订阅的state：{JSON.stringify(this.props.user.username)}</p>
 
+                <p>无需订阅的state：{JSON.stringify(this.props.user.username)}</p>
                 <TabBar/>
             </div>
         );
