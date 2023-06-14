@@ -1,8 +1,8 @@
-import Index from './index'
+import React from "react";
 const routes = [
     {
         path: '/my',
-        components: Index,
+        components: React.lazy(() => import('./index')),
         exact: true
     }
 ]

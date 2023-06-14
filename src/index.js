@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+import { HashRouter, Route, Switch, Redirect, useRouteMatch } from "react-router-dom";
 import routes from './router'
 
 // react-redux
@@ -19,21 +19,23 @@ require('./mock/index')
 ReactDOM.render(
     <Provider store={store}>
         <React.StrictMode>
-            <HashRouter>
-                <Switch>
-                    {
-                        routes.map((item,key)=> {
-                            if(item.exact) {
-                                return <Route key={key} exact path={item.path} component={item.components}/>
-                            }else {
-                                return <Route key={key} path={item.path} component={item.components}/>
-                            }
-                        })
-                    }
-                    {/*如果都没有匹配到，重定向*/}
-                    <Redirect to='/login' />
-                </Switch>
-            </HashRouter>
+            <Suspense fallback={ <div>加载中...</div> }>
+                <HashRouter>
+                    <Switch>
+                        {
+                            routes.map((item,key)=> {
+                                if(item.exact) {
+                                    return <Route key={key} exact path={item.path} component={item.components}/>
+                                }else {
+                                    return <Route key={key} path={item.path} component={item.components}/>
+                                }
+                            })
+                        }
+                        {/*如果都没有匹配到，重定向*/}
+                        <Redirect to='/login' />
+                    </Switch>
+                </HashRouter>
+            </Suspense>
         </React.StrictMode>
     </Provider>,
     document.getElementById('root')

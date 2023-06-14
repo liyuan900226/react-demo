@@ -34,6 +34,9 @@ class Index extends Component {
 
 
     }
+    static getDerivedStateFromProps() {
+        console.log('getDerivedStateFromProps')
+    }
     render() {
         return (
             <div>
@@ -75,6 +78,11 @@ class Index extends Component {
                         <Hook changeName={(e) => alert(JSON.stringify(e))} />
                         <br/>
                     </div>
+                    <div>
+                        <p>>>>>>>>>>>>>>>>>测试setState>>>>>>>>>>>>>>>>>></p>
+                        <span>数量{ this.state.num }</span>
+                        <button onClick={() => this.testSetState()}>测试setState</button>
+                    </div>
                 </div>
                 <TabBar/>
             </div>
@@ -82,7 +90,7 @@ class Index extends Component {
     }
 
     componentDidMount() {
-        add({name: 'ok', status: '1'})
+        // add({name: 'ok', status: '1'})
     }
 
     handleChange() {
@@ -112,7 +120,44 @@ class Index extends Component {
         this.setState({
             time: value
         })
-        console.log('触发了自定义事件')
+        // console.log('触发了自定义事件')
+    }
+
+    /**
+     * 将 setState() 视为请求而不是立即更新组件的命令。
+     * 为了更好的感知性能，React 会延迟调用它，然后通过一次传递更新多个组件。
+     * React 并不会保证 state 的变更会立即生效。
+     *
+     * 除非 shouldComponentUpdate() 返回 false，否则 setState() 将始终执行重新渲染操作
+     */
+    testSetState() {
+        /**
+         * 方法一： 调用setState时 获取state
+         * 此时两个 setState 方法传入的最新state是一致的，
+         * 所以两个 setState 相当于重复执行了一次
+         */
+        // this.setState({
+        //     ...this.state,
+        //     num: this.state.num + 1
+        // })
+        // this.setState({
+        //     ...this.state,
+        //     num: this.state.num + 1
+        // })
+        /**
+         * 方法二：此时是渲染前才获取 state
+         * 所以第二次执行获取的 state 是第一次（渲染微任务）更新后的值
+         *
+         * 参数中的方法第一个为 state，第二个为 props
+         */
+        this.setState((state, props) => ({
+            ...state,
+            num: state.num + 1
+        }))
+        this.setState((state, props) => ({
+            ...state,
+            num: state.num + 1
+        }))
     }
 
 
@@ -129,7 +174,8 @@ class Index extends Component {
                 ...this.state.form,
                 name: '李四'  // 修改 state 的第二层
             }
-        }, () => console.log(document.getElementById('name').innerHTML))
+        }, () => console.log('改完了'))
+        console.log(this.state)
         console.log(document.getElementById('name').innerHTML)
     }
 

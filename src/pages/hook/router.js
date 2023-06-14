@@ -1,10 +1,9 @@
 import React from "react";
 const routes = [
     {
-        path: '/login',
-        components: React.lazy(() => import('./login')),
+        path: '/hook',
+        components: React.lazy(() => import('./Index')),
         exact: true
-    },
-
+    }
 ]
 export default routes;

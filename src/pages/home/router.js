@@ -1,13 +1,12 @@
-import Index from './index'
-import HomeDetail from './homeDetail/homeDetail'
+import React from "react";
 const routes = [
     {
         path: '/home',
-        components: Index,
+        components: React.lazy(() => import('./index')),
         exact: true
     },{
         path: '/homeDetail/:id/:name',
-        components: HomeDetail,
+        components: React.lazy(() => import('./homeDetail/homeDetail')),
         exact: true
     },
 

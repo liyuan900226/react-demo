@@ -23,8 +23,8 @@ function user(state=initUser, action) {
      * let newState = JSON.parse(JSON.stringfy(state)) !!!!!!!!!!  (Object.assign() 不是深拷贝，貌似内层的不会深拷贝)
      * 返回一个新的state
      */
-    console.log('action')
-    console.log(action)
+    // console.log('action')
+    // console.log(action)
     switch (action.type) {
         case SET_USER: // 设置用户
             return {...state, username: action.username}

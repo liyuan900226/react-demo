@@ -100,25 +100,17 @@ const Hook = (props) => {
      * 如果想执行只运行一次的 effect，第二个参数传[],
      * 这就告诉 React 你的 effect 不依赖于 props 或 state 中的任何值，所以它永远都不需要重复执行
      * 但是这样其实不安全
+     * componentDidMount
      */
     useEffect(() => {
-        console.log('form.name变化时才会触发')
-        console.log(form.name)
-        document.title = `countA`;
-        return () => {
-            console.log('效果1已清除')
-        }
-    }, []); // 依赖 form.name，它改变时会重新执行，感觉可以实现监听
+        console.log('componentDidMount')
+    }, []);
 
     useEffect(() => {
-        console.log('useEffect触发了')
-        // 每个 effect 都可以返回一个清除函数，React 会在组件卸载的时候执行清除操作
-        // React 会在执行当前 effect 之前对上一个 effect 进行清除,所以每次都会先清除，然后执行该effect
         return () => {
-            document.title = ''
-            console.log('效果2已清除')
+            console.log('componentWillUnmount')
         }
-    })
+    }, [])
 
     /**
      * 依赖列表安全性！
@@ -185,7 +177,5 @@ const Hook = (props) => {
         </div>
     )
 }
-
-
 
 export default Hook
